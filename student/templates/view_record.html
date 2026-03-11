@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View_Record</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='bt/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='font/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery-3.7.1.min.js')}}"></script>
+     <style>
+        body{
+            background-image: url("{{ url_for('static', filename='images/schl.jpg')}}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            }
+    </style>
+</head>
+<body >
+    <div class="container">
+        <div class="col-md-offset-1 col-md-20">
+            <h2 class="page-header text-primary text-center"> View_Record </h2>
+            <table class=" table table-bordered">
+                <thead>
+                <tr style="text-align:center">
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Course</th>
+                    <th>Contact</th>
+                    <th>Mail</th>
+                    <th>Address</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for res in data %}
+                        {% set i=loop.index %}
+                <tr style="text-align:center">
+                    <td>{{i}}</td>
+                    <td>{{res["name"]}}</td>
+                    <td>{{res["age"]}}</td>
+                    <td>{{res["course"]}}</td>
+                    <td>{{res["contact"]}}</td>
+                    <td>{{res["mail"]}}</td>
+                    <td>{{res["address"]}}</td>
+                    <td style="text-align:center"><a href="{{url_for('update_record',id=res['id'])}}" class="btn btn-primary">Edit</a> </td>
+                    <td style="text-align:center"><a href="{{url_for('delete_record',id=res['id'])}}" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <div>
+                <a href="{{url_for('home')}}" class="btn btn-warning pull-right">Home Page</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
